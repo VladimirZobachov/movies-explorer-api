@@ -1,0 +1,46 @@
+{
+  "name": "express-mesto-gha",
+  "author": "Zobachov Vladimir",
+  "version": "1.0.0",
+  "description": "Дипломная работа ЯП веб разработка",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladimirZobachov/express-mesto-gha.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VladimirZobachov/express-mesto-gha/issues"
+  },
+  "homepage": "https://github.com/VladimirZobachov/express-mesto-gha#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "celebrate": "^15.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-winston": "^4.2.0",
+    "isurl": "^4.0.2",
+    "joi": "^17.6.0",
+    "joi-objectid": "^4.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.4",
+    "validator": "^13.7.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "eslint": "8.22.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.19"
+  }
+}
