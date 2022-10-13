@@ -4,7 +4,7 @@ const validEmail = require('validator');
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: [true, 'поле name является обязательным для заполнения'],
+        required: [true, 'поле email является обязательным для заполнения'],
         validate: {
             validator(v) {
                 return validEmail.isEmail(v);
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         select: false,
-        required: [true, 'поле name является обязательным для заполнения'],
+        required: [true, 'поле password является обязательным для заполнения'],
     },
     name: {
         type: String,

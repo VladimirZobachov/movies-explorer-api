@@ -28,6 +28,7 @@
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "express-winston": "^4.2.0",
+    "id-auto-increment": "^1.0.1",
     "isurl": "^4.0.2",
     "joi": "^17.6.0",
     "joi-objectid": "^4.0.2",
