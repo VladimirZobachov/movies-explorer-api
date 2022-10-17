@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./midlewares/logger');
 const router = require('./routers');
-const limiter = require("./midlewares/limiter");
+const limiter = require('./midlewares/limiter');
 
 const { PORT = 3000 } = process.env;
 const app = express();

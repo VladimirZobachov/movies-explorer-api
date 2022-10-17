@@ -1,10 +1,11 @@
 const express = require('express');
+
 const router = express.Router();
 const userRouter = require('./users');
 const moviesRouter = require('./movies');
 
 const auth = require('../midlewares/auth');
-const {createUser, login} = require("../controllers/users");
+const { createUser, login } = require('../controllers/users');
 
 router.post('/signup', createUser);
 router.post('/signin', login);
