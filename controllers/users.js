@@ -39,8 +39,8 @@ const getCurUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   try {
-    const { name } = req.body;
-    const user = await User.findByIdAndUpdate(req.user._id, { name }, { new: true });
+    const { email, name } = req.body;
+    const user = await User.findByIdAndUpdate(req.user._id, { email, name }, { new: true });
     if (!user) {
       return new NotFoundError('Ничего не найдено');
     }

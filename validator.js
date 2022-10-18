@@ -20,27 +20,14 @@ const validateUserBody = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().custom(validateLink),
+    name: Joi.string().required().min(2).max(30),
   }),
 });
 
 const validateUpdateUser = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-  }),
-});
-
-const validateUserId = celebrate({
-  params: Joi.object().keys({
-    userId: Joi.string().custom((value, helpers) => {
-      if (mongoose.Types.ObjectId.isValid(value)) {
-        return value;
-      }
-      return helpers.message('Невалидный id');
-    }),
+    name: Joi.string().required().min(2).max(30),
+    email: Joi.string().email(),
   }),
 });
 
@@ -67,7 +54,6 @@ module.exports = {
   validateUserBody,
   validateLogin,
   validateUpdateUser,
-  validateUserId,
   validateCardBody,
   validateCardId,
 };
