@@ -20,9 +20,9 @@ const userSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    default: 'Жак-Ив Кусто',
     minLength: [2, 'минимальное значение поля name 2 символа'],
     maxLength: [30, 'максимально значение поля name 30 символов'],
+    required: [true, 'поле name является обязательным для заполнения'],
   },
 });
 
