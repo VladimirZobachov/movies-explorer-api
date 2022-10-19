@@ -41,7 +41,6 @@ const validateMovieBody = celebrate({
     image: Joi.string().required(),
     trailerLink: Joi.string().required(),
     thumbnail: Joi.string().required(),
-    owner: Joi.string().required(),
     movieId: Joi.string().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
@@ -50,7 +49,7 @@ const validateMovieBody = celebrate({
 
 const validateMovieId = celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().custom((value, helpers) => {
+    id: Joi.string().custom((value, helpers) => {
       if (mongoose.Types.ObjectId.isValid(value)) {
         return value;
       }
