@@ -31,14 +31,24 @@ const validateUpdateUser = celebrate({
   }),
 });
 
-const validateCardBody = celebrate({
+const validateMovieBody = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).required(),
-    link: Joi.string().required().custom(validateLink),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.number().required(),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().required(),
+    trailerLink: Joi.string().required(),
+    thumbnail: Joi.string().required(),
+    owner: Joi.string().required(),
+    movieId: Joi.string().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
   }),
 });
 
-const validateCardId = celebrate({
+const validateMovieId = celebrate({
   params: Joi.object().keys({
     cardId: Joi.string().custom((value, helpers) => {
       if (mongoose.Types.ObjectId.isValid(value)) {
@@ -54,6 +64,6 @@ module.exports = {
   validateUserBody,
   validateLogin,
   validateUpdateUser,
-  validateCardBody,
-  validateCardId,
+  validateMovieBody,
+  validateMovieId,
 };

@@ -3,10 +3,10 @@ const express = require('express');
 const moviesRouter = express.Router();
 
 const { createMovie, getMovies, deleteMovie } = require('../controllers/movies');
-const { validateCardBody, validateCardId } = require('../validator');
+const { validateMovieBody, validateMovieId } = require('../validator');
 
-moviesRouter.post('/movies', validateCardBody, createMovie);
+moviesRouter.post('/movies', validateMovieBody, createMovie);
 moviesRouter.get('/movies', getMovies);
-moviesRouter.delete('/movies/:movieId', validateCardId, deleteMovie);
+moviesRouter.delete('/movies/:movieId', validateMovieId, deleteMovie);
 
 module.exports = moviesRouter;
