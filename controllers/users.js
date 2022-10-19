@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { NotFoundError } = require('../errorsClasses/NotFoundError');
 const { ValidationError } = require('../errorsClasses/ValidationError');
+const { DuplicateError } = require('../errorsClasses/DuplicateError');
+const { NotAuthError } = require('../errorsClasses/NotAuthError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -22,6 +24,9 @@ const createUser = async (req, res, next) => {
     });
     return res.status(200).send(user);
   } catch (e) {
+    if (e.code === 11000) {
+      return next(new DuplicateError('Такой email уже есть'));
+    }
     return next(e);
   }
 };
@@ -50,6 +55,9 @@ const updateUser = async (req, res, next) => {
     if (e.name === 'ValidationError') {
       return next(new ValidationError('Некорректные дянные при обновлении пользователя'));
     }
+    if (e.code === 11000) {
+      return next(new DuplicateError('Это не ваш email'));
+    }
     return next(e);
   }
 };
@@ -61,19 +69,23 @@ const login = async (req, res, next) => {
   } = req.body;
   try {
     const user = await User.findOne({ email }).select(password);
+    if (!user) {
+      return next(new NotAuthError('Авторизация не успешна'));
+    }
     const token = jwt.sign(
       { _id: user._id },
       NODE_ENV === 'production' ? JWT_SECRET : 'SECRET',
     );
+
     res.cookie('jwt', token, {
       maxAge: 3600000,
       httpOnly: true,
       sameSite: true,
       // secure: true
     });
-    res.send({ data: user.toJSON() });
+    return res.send({ data: user.toJSON() });
   } catch (e) {
-    next(e);
+    return next(e);
   }
 };
 
