@@ -77,13 +77,14 @@ const login = async (req, res, next) => {
       NODE_ENV === 'production' ? JWT_SECRET : 'SECRET',
     );
 
-    res.cookie('jwt', token, {
-      maxAge: 3600000,
-      httpOnly: true,
-      sameSite: true,
-      // secure: true
-    });
-    return res.send({ data: user.toJSON() });
+    // res.cookie('jwt', token, {
+    //   maxAge: 3600000,
+    //   httpOnly: true,
+    //   sameSite: "Lax",
+    //   //secure: "none"
+    // });
+
+    return res.send({token});
   } catch (e) {
     return next(e);
   }
