@@ -72,17 +72,6 @@ const login = async (req, res, next) => {
     if (!user) {
       return next(new NotAuthError('Авторизация не успешна'));
     }
-    const token = jwt.sign(
-      { _id: user._id },
-      NODE_ENV === 'production' ? JWT_SECRET : 'SECRET',
-    );
-
-    res.cookie('jwt', token, {
-      maxAge: 3600000,
-      httpOnly: true,
-      sameSite: true,
-      // secure: true
-    });
     return res.send({ data: user.toJSON() });
   } catch (e) {
     return next(e);
